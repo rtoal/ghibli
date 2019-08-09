@@ -11,7 +11,13 @@
   {% for result in response %}
     <div class="result">
       {% for key, value in result.items() %}
-        <div>{{ key}} : {{ value }}</div>
+        <div>{{ key}} :
+          {% if value is string and value.startswith('http') %}
+            <a href="{{ value }}">{{value}}</a>
+          {% else %}
+            {{ value }}
+          {% endif %}
+        </div>
       {% endfor %}
     </div>
   {% endfor %}
